@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+
+    <div class="container">
+
+    	<div class="row">
+            <div class="col-md-8">
+                <form action="" method="post" class="form-horizontal" role="form">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <legend>User Login</legend>
+                    </div>
+                    {% if form.errors %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-warning">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <strong>Password Mismatch!</strong> Password is wrong
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">{{ form.username.label }}:</label>
+{#                            {{ form.username.label_tag }}#}
+                        <div class="col-sm-10">
+{#                            <input type="text" class="form-control" id="" placeholder="">#}
+{#                            {{ form.username }}#}
+                            {% render_field form.username class+="form-control" %}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">{{ form.password.label }}</label>
+
+                        <div class="col-sm-10">
+{#                            <input type="text" class="form-control" id="" placeholder="">#}
+                            {% render_field form.password class+="form-control" %}
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-10 col-sm-offset-2">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <a href="{% url 'password_reset' %}" class="btn btn-primary">Password Reset</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
